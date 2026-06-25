@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>买球站 · 信息便捷卡</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fce4c8 0%, #f7d2a8 40%, #efbf8b 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      line-height: 1.6;
+      color: #3a2e23;
+    }
+
+    .card-group {
+      max-width: 820px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: rgba(255, 248, 239, 0.85);
+      backdrop-filter: blur(2px);
+      background: #fffcf7;
+      border-radius: 32px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 12px 30px rgba(140, 90, 50, 0.12), 0 6px 12px rgba(100, 65, 30, 0.08);
+      transition: transform 0.2s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(140, 85, 40, 0.18);
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #fff9f0 0%, #fef1e3 100%);
+      border-left: 5px solid #d9945c;
+      padding: 2.2rem 2.2rem 1.8rem;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #5d3e28;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: #7c5e45;
+      margin-top: 0.5rem;
+      border-left: 3px solid #e3b182;
+      padding-left: 1rem;
+      background: #f9ede1;
+      border-radius: 0 12px 12px 0;
+      display: inline-block;
+      padding: 0.3rem 1rem 0.3rem 1rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.2rem 0 0.2rem;
+    }
+
+    .feature-item {
+      background: #f7efe6;
+      border-radius: 20px;
+      padding: 1.2rem 1.2rem 1rem;
+      transition: background 0.2s;
+    }
+
+    .feature-item h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #5c3f2b;
+      margin-bottom: 0.3rem;
+      border-bottom: 2px solid #e7cfb7;
+      padding-bottom: 0.3rem;
+      display: inline-block;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #4d3b2d;
+      margin-top: 0.5rem;
+    }
+
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 0.6rem;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    .tag {
+      background: #e8d7c4;
+      color: #3e2d1d;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      box-shadow: inset 0 0 0 1px rgba(255, 235, 210, 0.5);
+    }
+
+    .link-sentence {
+      background: #fcf3e9;
+      border-radius: 28px;
+      padding: 1.4rem 2rem;
+      font-size: 1.05rem;
+      border: 1px solid #e5cfba;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.2rem 0.35rem;
+    }
+
+    .link-sentence a {
+      color: #9f6b3b;
+      background: #f5e3d1;
+      padding: 0.2rem 1rem 0.25rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.18s ease;
+      border-bottom: 2px solid transparent;
+      font-size: 1.05rem;
+    }
+
+    .link-sentence a:hover {
+      background: #dbaa7a;
+      color: #2f1e12;
+      border-bottom-color: #a46f41;
+      transform: scale(1.02);
+    }
+
+    .faq-preview {
+      margin-top: 0.4rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px dashed #dfcbbc;
+      padding: 0.7rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      color: #5a3f2a;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .faq-q::before {
+      content: "▸";
+      color: #b68458;
+    }
+
+    .faq-a {
+      color: #4f3929;
+      font-size: 0.9rem;
+      padding-left: 1.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .note-narrow {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #8b6f58;
+      letter-spacing: 0.3px;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 580px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+
+      .card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 28px;
+      }
+
+      .hero-title {
+        font-size: 1.6rem;
+      }
+
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .link-sentence {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.2rem 1.2rem;
+      }
+
+      .link-sentence a {
+        margin-top: 0.25rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-card {
+        padding: 1.2rem 1rem;
+      }
+
+      .hero-title {
+        font-size: 1.4rem;
+      }
+
+      .tag {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="card-group">
+
+  <!-- 主视觉 / 再次访问 & 收藏 -->
+  <div class="card hero-card">
+    <h1 class="hero-title">再次回到这里 · 信息常新</h1>
+    <div class="hero-sub">收藏夹里稳稳的一页 · 持续关注</div>
+    <p style="margin-top: 1rem; font-size: 1rem; color: #4d3827;">
+      对经常浏览体育与竞猜资讯的用户来说，保持一个可靠的访问路径很重要。
+      把本页加入浏览器书签，或直接记住域名——每次回来都能获取一致的结构化信息。
+    </p>
+    <p style="margin-top: 0.6rem; font-size: 0.95rem; background: #f7ebde; padding: 0.4rem 1rem; border-radius: 40px; display: inline-block;">
+      ⭐ 建议收藏 · 方便回看
+    </p>
+  </div>
+
+  <!-- 用途卡片（信息密度稍高） -->
+  <div class="card">
+    <h2 style="font-size: 1.3rem; font-weight: 600; color: #553c28; margin-bottom: 0.25rem;">用途 · 不止一个切面</h2>
+    <div class="grid-2col">
+      <div class="feature-item">
+        <h3>赛事参考</h3>
+        <p>快速浏览联赛、杯赛的布局与动态，辅助日常信息整理。</p>
+      </div>
+      <div class="feature-item">
+        <h3>策略沉淀</h3>
+        <p>适合习惯做笔记、对比盘口趋势的用户，页面结构利于回顾。</p>
+      </div>
+      <div class="feature-item">
+        <h3>收藏中转</h3>
+        <p>将本页作为访问起点，再根据需求跳转到不同深度内容。</p>
+      </div>
+      <div class="feature-item">
+        <h3>轻量化入口</h3>
+        <p>无冗余干扰，专注核心链接与说明，减少每次查找成本。</p>
+      </div>
+    </div>
+    <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #735a46; border-top: 1px solid #e7d5c4; padding-top: 0.6rem;">
+      每张卡片对应一种使用场景，按需取用。
+    </p>
+  </div>
+
+  <!-- 适合人群 + 特征标签 -->
+  <div class="card">
+    <h2 style="font-size: 1.25rem; font-weight: 600; color: #4b3524; margin-bottom: 0.5rem;">适合哪些人持续关注</h2>
+    <div class="audience-tags">
+      <span class="tag">📊 数据爱好者</span>
+      <span class="tag">⚽ 球迷</span>
+      <span class="tag">📁 信息整理派</span>
+      <span class="tag">🔁 回访型用户</span>
+      <span class="tag">🧩 策略参考者</span>
+      <span class="tag">📆 长期关注者</span>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.95rem; color: #3f2f21;">
+      无论你是初次接触还是已有一段时间，从信息密度和更新节奏来看，
+      这里更适合愿意多次回来、自己判断内容价值的用户。
+    </p>
+    <div style="margin-top: 0.8rem; background: #f5eadf; border-radius: 18px; padding: 0.6rem 1.2rem;">
+      <span style="font-weight: 500;">📌 再次访问的理由：</span> 结构固定、减少重复寻找，把注意力放在信息本身。
+    </div>
+  </div>
+
+  <!-- 自然链接段落（嵌入买球站） -->
+  <div class="link-sentence">
+    <span>如果你希望直接访问主要信息聚合页，</span>
+    <a href="https://official-portal-maiqiu.com">买球站</a>
+    <span>提供了赛事结构、常见分类索引以及持续更新的参考内容。适合加入书签反复使用。</span>
+  </div>
+
+  <!-- FAQ 摘要 + 提示 -->
+  <div class="card faq-preview">
+    <h2 style="font-size: 1.2rem; font-weight: 600; color: #4f3825; margin-bottom: 0.6rem;">常见关注点 · 摘要</h2>
+    <div class="faq-item">
+      <div class="faq-q">这个页面会经常变化吗？</div>
+      <div class="faq-a">结构保持稳定，但内容卡片和提示会根据阶段微调，建议不时回看。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">如何最快回到这里？</div>
+      <div class="faq-a">浏览器添加书签，或直接在地址栏输入域名。本页适合做起始页。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">信息是否可靠？</div>
+      <div class="faq-a">页面仅提供结构化的指引与链接，不代替判断，请依据自身情况参考。</div>
+    </div>
+    <p style="margin-top: 0.9rem; font-size: 0.85rem; color: #7c614b; border-top: 1px solid #ead8c9; padding-top: 0.8rem;">
+      💡 提示：持续关注意味着定期回来浏览，本页不收集个人信息，亦不设强制跳转。
+    </p>
+    <div class="note-narrow">— 简洁 · 可复用 —</div>
+  </div>
+
+</div>
+</body>
+</html>
